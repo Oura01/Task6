@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Components Order Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(145deg, #ffffff, #e6e6e6);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 2em;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        fieldset {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        legend {
+            font-weight: bold;
+            padding: 0 10px;
+            background: linear-gradient(145deg, #f5f5f5, #e0e0e0);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            margin-bottom: 5px;
+            display: block;
+            color: #333;
+        }
+
+        input, select {
+            width: calc(100% - 16px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background: linear-gradient(145deg, #ffffff, #e0e0e0);
+            box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+        }
+
+        .quantity-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-group input {
+            width: 60px;
+            text-align: center;
+        }
+
+        .component-price {
+            font-weight: bold;
+        }
+
+        button {
+            padding: 10px;
+            background: linear-gradient(145deg, #28a745, #218838);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(145deg, #218838, #1e7e34);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #totalPrice {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1.2em;
+            text-align: center;
+            color: #333;
+        }
+
+        #confirmationMessage {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Order Computer Components</h1>
+        </header>
+        <form id="orderForm">
+            <fieldset>
+                <legend>Personal Information</legend>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone">
+            </fieldset>
+
+            <fieldset>
+                <legend>Address Details</legend>
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+                
+                <label for="company">Company:</label>
+                <input type="text" id="company" name="company">
+                
+                <label for="country">Country:</label>
+                <input type="text" id="country" name="country" required>
+                
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required>
+                
+                <label for="additionalInfo">Additional Information:</label>
+                <input type="text" id="additionalInfo" name="additionalInfo">
+            </fieldset>
+
+            <fieldset>
+                <legend>Select Components</legend>
+                <label for="cpu">CPU:</label>
+                <select id="cpu" name="cpu">
+                    <option value="intel-i5" data-price="200">Intel i5 - $200</option>
+                    <option value="intel-i7" data-price="300">Intel i7 - $300</option>
+                    <option value="amd-ryzen-5" data-price="250">AMD Ryzen 5 - $250</option>
+                    <option value="amd-ryzen-7" data-price="350">AMD Ryzen 7 - $350</option>
+                </select>
+
+                <div class="quantity-group">
+                    <label for="cpuQuantity">Quantity:</label>
+                    <input type="number" id="cpuQuantity" name="cpuQuantity" min="0" value="0">
+                </div>
+                
+                <label for="ram">RAM (in GB):</label>
+                <select id="ram" name="ram">
+                    <option value="8" data-price="80">8 GB - $80</option>
+                    <option value="16" data-price="150">16 GB - $150</option>
+                    <option value="32" data-price="250">32 GB - $250</option>
+                </select>
+
+                <div class="quantity-group">
+                    <label for="ramQuantity">Quantity:</label>
+                    <input type="number" id="ramQuantity" name="ramQuantity" min="0" value="0">
+                </div>
+                
+                <label for="storage">Storage:</label>
+                <select id="storage" name="storage">
+                    <option value="ssd-256gb" data-price="100">256 GB SSD - $100</option>
+                    <option value="ssd-512gb" data-price="180">512 GB SSD - $180</option>
+                    <option value="hdd-1tb" data-price="70">1 TB HDD - $70</option>
+                </select>
+
+                <div class="quantity-group">
+                    <label for="storageQuantity">Quantity:</label>
+                    <input type="number" id="storageQuantity" name="storageQuantity" min="0" value="0">
+                </div>
+            </fieldset>
+
+            <div id="totalPrice">Total Price: $0</div>
+
+            <button type="submit">Submit Order</button>
+        </form>
+
+        <div id="confirmationMessage" class="hidden">
+            <h2>Order Confirmation</h2>
+            <p>Your order has been submitted successfully.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const cpuPrice = parseFloat(document.querySelector('#cpu option:checked').dataset.price);
+            const ramPrice = parseFloat(document.querySelector('#ram option:checked').dataset.price);
+            const storagePrice = parseFloat(document.querySelector('#storage option:checked').dataset.price);
+
+            const cpuQuantity = parseInt(document.getElementById('cpuQuantity').value) || 0;
+            const ramQuantity = parseInt(document.getElementById('ramQuantity').value) || 0;
+            const storageQuantity = parseInt(document.getElementById('storageQuantity').value) || 0;
+
+            const totalPrice = (cpuPrice * cpuQuantity) + (ramPrice * ramQuantity) + (storagePrice * storageQuantity);
+
+            document.getElementById('totalPrice').textContent = `Total Price: $${totalPrice.toFixed(2)}`;
+
+            document.getElementById('orderForm').reset();
+            document.getElementById('confirmationMessage').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
